@@ -18,7 +18,7 @@
 import uuid
 
 from datetime import datetime
-from locust import HttpLocust, TaskSet, task, between
+from locust import HttpLocust, TaskSet, task
 
 
 class MetricsTaskSet(TaskSet):
@@ -31,12 +31,10 @@ class MetricsTaskSet(TaskSet):
     # def base(self):
     #     self.client.get("/")
 
-    @task
+    @task(1)
     def join(self):
         self.client.post(
             "/matchmake/joinOrCreate/LIVECASINO", {"buyIn": 10, "name": "xyz"})
-    
-    wait_time = between(5, 9)
     
     # @task(999)
     # def post_metrics(self):
