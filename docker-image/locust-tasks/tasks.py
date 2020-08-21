@@ -36,7 +36,7 @@ class MetricsTaskSet(TaskSet):
         self.client.post(
             "/matchmake/joinOrCreate/LIVECASINO", {"buyIn": 10, "name": "xyz"})
     
-    wait_time = between(5, 10)
+    wait_time = between(5, 9)
     
     # @task(999)
     # def post_metrics(self):
