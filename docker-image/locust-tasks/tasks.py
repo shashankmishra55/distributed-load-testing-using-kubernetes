@@ -27,15 +27,20 @@ class MetricsTaskSet(TaskSet):
     def on_start(self):
         self._deviceid = str(uuid.uuid4())
 
-    @task(1)
+    # @task(1)
+    # def login(self):
+    #     self.client.post(
+    #         '/login', {"deviceid": self._deviceid})
+
+     @task(1000)
     def login(self):
         self.client.post(
-            '/login', {"deviceid": self._deviceid})
+            'auth?token=cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNkMmRmMGViNzJkOWJjYjExZjk5NTgiLCJpYXQiOjE1OTc4NTA5NTN9.-GqMOayd4r29xKTf1PeHuvqGwLzupwCYN4kFfGxXQ6o', {})
 
-    @task(999)
-    def post_metrics(self):
-        self.client.post(
-            "/metrics", {"deviceid": self._deviceid, "timestamp": datetime.now()})
+    # @task(999)
+    # def post_metrics(self):
+    #     self.client.post(
+    #         "/metrics", {"deviceid": self._deviceid, "timestamp": datetime.now()})
 
 
 class MetricsLocust(HttpLocust):
