@@ -23,24 +23,19 @@ from locust import HttpLocust, TaskSet, task
 
 class MetricsTaskSet(TaskSet):
     _deviceid = None
-    _token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNkMmRmMGViNzJkOWJjYjExZjk5NTgiLCJpYXQiOjE1OTc4NTA5NTN9.-GqMOayd4r29xKTf1PeHuvqGwLzupwCYN4kFfGxXQ6o"
+
     def on_start(self):
         self._deviceid = str(uuid.uuid4())
 
-    # @task(1)
-    # def login(self):
-    #     self.client.post(
-    #         '/login', {"deviceid": self._deviceid})
-
-     @task(1000)
+    @task(1)
     def login(self):
         self.client.post(
-            '/auth?token=cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNkMmRmMGViNzJkOWJjYjExZjk5NTgiLCJpYXQiOjE1OTc4NTA5NTN9.-GqMOayd4r29xKTf1PeHuvqGwLzupwCYN4kFfGxXQ6o', {})
+            '/login', {"deviceid": self._deviceid})
 
-    # @task(999)
-    # def post_metrics(self):
-    #     self.client.post(
-    #         "/metrics", {"deviceid": self._deviceid, "timestamp": datetime.now()})
+    @task(999)
+    def post_metrics(self):
+        self.client.post(
+            "/metrics", {"deviceid": self._deviceid, "timestamp": datetime.now()})
 
 
 class MetricsLocust(HttpLocust):
