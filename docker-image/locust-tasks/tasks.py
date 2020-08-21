@@ -32,8 +32,8 @@ class MetricsTaskSet(TaskSet):
         self.client.post(
             '/login', {"deviceid": self._deviceid})
 
-     @task(999)
-    def login(self):
+    @task(999)
+    def join(self):
         self.client.post(
             '/matchmake/joinOrCreate/LIVECASINO', {"buyIn": 10, "name": "y9fmrva8ec"})
 
