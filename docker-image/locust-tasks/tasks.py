@@ -35,7 +35,7 @@ class MetricsTaskSet(TaskSet):
      @task(1000)
     def login(self):
         self.client.post(
-            'auth?token=cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNkMmRmMGViNzJkOWJjYjExZjk5NTgiLCJpYXQiOjE1OTc4NTA5NTN9.-GqMOayd4r29xKTf1PeHuvqGwLzupwCYN4kFfGxXQ6o', {})
+            '/matchmake/joinOrCreate/LIVECASINO', {"buyIn": 10, name: "y9fmrva8ec"})
 
     # @task(999)
     # def post_metrics(self):
