@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: "extensions/v1beta1"
+apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
   name: locust-worker
@@ -25,16 +25,18 @@ spec:
       app: locust-worker
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
       labels:
         app: locust-worker
     spec:
       containers:
         - name: locust-worker
-          image: gcr.io/[PROJECT_ID]/locust-tasks:latest
+          image: us.gcr.io/aura-egaming/locust-tasks:latest
           env:
             - name: LOCUST_MODE
               value: worker
             - name: LOCUST_MASTER
               value: locust-master
             - name: TARGET_HOST
-              value: https://[TARGET_HOST]
+              value: https://auraegaming.gamix.in/teenpatti/
