@@ -27,10 +27,14 @@ class MetricsTaskSet(TaskSet):
     def on_start(self):
         self._deviceid = str(uuid.uuid4())
 
-    @task(1000)
+    @task(1)
+    def base(self):
+        self.client.get("/")
+
+    @task(100)
     def join(self):
         self.client.post(
-            '/matchmake/joinOrCreate/LIVECASINO', {"buyIn": 10, "name": "y9fmrva8ec"})
+            "/matchmake/joinOrCreate/LIVECASINO", {"buyIn": 10, "name": self._deviceid})
 
     # @task(999)
     # def post_metrics(self):
