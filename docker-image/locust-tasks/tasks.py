@@ -34,7 +34,7 @@ class MetricsTaskSet(TaskSet):
     @task
     def join(self):
         self.client.post(
-            "/matchmake/joinOrCreate/LIVECASINO", {"buyIn": 10, "name": self._deviceid})
+            "/matchmake/joinOrCreate/LIVECASINO", {"buyIn": 10, "name": "xyz"})
     
     wait_time = between(5, 10)
 
